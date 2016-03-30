@@ -100,3 +100,73 @@
     (filter even?)
     (map str)
     (sort))
+
+;; Function composition
+
+(def magic (comp inc *))
+
+(magic 5 6)
+
+;; Partial application
+
+(def add-5 (partial + 5))
+(add-5 10)
+(add-5 1 3)
+
+;; Reduce
+
+(reduce
+ (fn [acc x] (+ acc x))
+ (range 10))
+(reduce + 100 (range 10))
+
+;; Sequential destructuring
+
+(let [[x1 x2] [1 2 3]]
+  (println x1 x2))
+
+(let [[x & xs] [1 2 3]]
+  (println x xs))
+
+(let [[x1 x2 x3] [1 2]]
+  (println x1 x2 x3))
+
+(let [[x1 x2 :as xs] [1 2 3]]
+  (println x1 x2)
+  (println xs))
+
+;; Map destructuring
+
+(let [{a :a} {:a 1 :b 2}]
+  (println a))
+
+(let [{a :a :as m}
+      {:a 1 :b 2}]
+  (println a m))
+
+(let [{:keys [a b] :as m}
+      {:a 1, :b 2, :c 3}]
+  (println a b m))
+
+(let [{:keys [a b d] :or {a 0 d 4}}
+      {:a 1, :b 2, :c 3}]
+  (println a b d))
+
+(defn configure [opts]
+  (let [{:keys [volume bass treble]
+         :or {volume 5 bass 3 treble 2}} opts]
+    (println "Config" (keyed [volume bass treble]))))
+
+(configure {:volume 1})
+
+(defn configure' [{:keys [volume bass treble]
+                   :or {volume 5 bass 3 treble 2}}]
+  (println "Config" (keyed [volume bass treble])))
+
+(configure' {:volume 1})
+
+(defn configure'' [& {:keys [volume bass treble]
+                      :or {volume 5 bass 3 treble 2}}]
+  (println "Config" (keyed [volume bass treble])))
+
+(configure'' :volume 1 :bass 7)
