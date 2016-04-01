@@ -22,9 +22,14 @@
 (range 5 10)
 (range 5 20 3)
 
+;; don't do this at home (:
+#_(range)
+
 (reverse (range 5 10))
 
 (take 10 (range 1000))
+;; this one is safe
+(take 10 (range))
 
 (drop 3 (range 10))
 
