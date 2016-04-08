@@ -33,7 +33,7 @@
 
 (drop 3 (range 10))
 
-(take-while #(< %10)
+(take-while #(< % 10)
             (range 100))
 
 (drop-while #(< % 10)
