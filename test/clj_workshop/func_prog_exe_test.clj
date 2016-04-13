@@ -27,14 +27,14 @@
   (is (= [{:id 3 :name "Julia Jones" :rating 9}]
          (ut/candidates-with-minimum-rating 8 candidates))))
 
-#_(deftest palindrome-test
+(deftest palindrome-test
   (is (true? (ut/palindrome? "kajak")))
   (is (true? (ut/palindrome? "kobylamamalybok")))
   (is (true? (ut/palindrome? [1 2 3 2 1])))
   (is (false? (ut/palindrome? [1 2])))
   (is (false? (ut/palindrome? "palindrom?"))))
 
-#_(deftest count-palindromes-test
+(deftest count-palindromes-test
   (is (= 1 (ut/count-palindromes 0 1)))
   (is (= 199 (ut/count-palindromes 0 10000))))
 

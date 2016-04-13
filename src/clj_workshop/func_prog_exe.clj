@@ -27,11 +27,18 @@
 (defn palindrome?
   "Checks if the given sequence is a palindrome"
   [xs]
-  (unimplemented))
+    (= (concat "" xs) (reverse xs))
+  )
 
 (defn count-palindromes
   [start end]
-  (unimplemented))
+
+  (->>  (range start end)
+        (map str)
+        (filter palindrome?)
+        (count)
+    )
+  )
 
 (defn primes
   "Returns a lazy seq of prime numbers"
