@@ -4,15 +4,25 @@
 (defn count-chars
   "Returns count of the provided character `c` in string `s`"
   [s c]
-  (unimplemented))
+  (->> s
+       (filter #(= c %))
+       (count)
+      )
+  )
 
 (defn candidate-names
   [candidates]
-  (unimplemented))
+  (->> candidates
+       (map :name)
+    )
+)
 
 (defn candidates-with-minimum-rating
   [min-rating candidates]
-  (unimplemented))
+  (->> candidates
+       (filter #(> (% :rating) 8) )
+    )
+  )
 
 (defn palindrome?
   "Checks if the given sequence is a palindrome"
