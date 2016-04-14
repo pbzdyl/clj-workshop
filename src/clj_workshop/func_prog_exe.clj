@@ -60,7 +60,7 @@
   [n]
   (unimplemented))
 
-(defn ratings-avg
+(defn rating-avg
   [candidates]
   (unimplemented))
 
