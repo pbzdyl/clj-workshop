@@ -38,15 +38,15 @@
   (is (= 1 (ut/count-palindromes 0 1)))
   (is (= 199 (ut/count-palindromes 0 10000))))
 
-#_(deftest primes-test
+(deftest primes-test
     (is (= primes-168 (take 168 (ut/primes)))))
 
-#_(deftest flip-flop-test
+(deftest flip-flop-test
   (is (= [2 2 4 4 6 6] (ut/flip-flop [1 2 3 4 5 6])))
   (is (= [2] (ut/flip-flop [1])))
   (is (= [] (ut/flip-flop []))))
 
-#_(deftest munge-candidate-name-test
+(deftest munge-candidate-name-test
   (is (= "EOD NHOJ" (ut/mungle-candidate-name {:id 1 :name "John Doe"}))))
 
 #_(deftest select-keys-test
@@ -55,17 +55,19 @@
 #_(deftest rcomp-test
   (is (= 3 ((ut/rcomp + inc) 3 3))))
 
-#_(deftest power-test
+(deftest power-test
   (is (= 9 (ut/power 3 2))))
 
-#_(deftest range-sum-test
+(deftest range-sum-test
   (is (= 4950 (ut/range-sum 100))))
 
-#_(deftest rating-avg-test
+(deftest rating-avg-test
   (is (= 6 (ut/rating-avg candidates))))
 
 #_(deftest distance-tuple-test
-  (is (= 10 (ut/distance-tuple [2 2] [10 8]))))
+  (is (= 10 (ut/distance-tuple [2 2] [10 8])))
+  (is (= 0 (ut/distance-tuple [2 2] [2 2]))))
 
 #_(deftest distance-map-test
-  (is (= 10 (ut/distance-map {:x 2 :y 2} {:x 10 :y 8}))))
+  (is (= 10 (ut/distance-map {:x 2 :y 2} {:x 10 :y 8})))
+  (is (= 0 (ut/distance-map {:x 2 :y 2} {:x 2 :y 2}))))

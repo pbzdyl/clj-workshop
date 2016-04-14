@@ -40,26 +40,53 @@
     )
   )
 
+
+(defn prime?
+  "Checks if number is prime"
+  [n]
+    (->> n
+           (range)
+           (drop 2)
+           (map #(mod n %))
+           (some zero?)
+           (not)
+           )
+  )
+
 (defn primes
   "Returns a lazy seq of prime numbers"
   []
-  (unimplemented))
+  (->> (range)
+       (drop 2)
+       (filter prime?)
+       )
+  )
+
 
 (defn flip-flop
   [nums]
-  (unimplemented))
+    (keep-indexed #(if (even? %1) (inc %2) %2) nums)
+  )
+
+
 
 (defn mungle-candidate-name
   "Returns uppercased and reversed name of the candidate"
   [candidate]
-  (unimplemented))
+
+  (->> :name candidate
+       (.toUpperCase)
+       (reverse)
+       (apply str)
+    )
+  )
 
 (defn select-values
   "Selects keys from the provided map
   and return their values. For example:
   (select-values {:a 1 :b 2 :c 3} [:a :c]) => (1 3)"
   [map keyseq]
-  (unimplemented))
+  )
 
 (defn rcomp
   "Composes provided functions so that
@@ -70,16 +97,29 @@
 (defn power
   "Returns n to the power of m"
   [n m]
-  (unimplemented))
+  (->> (repeat m n)
+       (reduce *)
+    )
+  )
 
 (defn range-sum
   "Calculates the sum of numbers [0..n)"
   [n]
-  (unimplemented))
+    (->> n
+         (range)
+         (reduce +)
+      )
+  )
 
-(defn ratings-avg
+(defn rating-avg
   [candidates]
-  (unimplemented))
+  (/ (->> candidates
+       (map :rating)
+       (reduce +)
+      )
+     (count candidates)
+  )
+)
 
 (defn distance-tuple
   "Calculates a distance between two points.
