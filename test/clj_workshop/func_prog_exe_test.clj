@@ -64,10 +64,10 @@
 (deftest rating-avg-test
   (is (= 6 (ut/rating-avg candidates))))
 
-#_(deftest distance-tuple-test
+(deftest distance-tuple-test
   (is (= 10 (ut/distance-tuple [2 2] [10 8])))
   (is (= 0 (ut/distance-tuple [2 2] [2 2]))))
 
-#_(deftest distance-map-test
+(deftest distance-map-test
   (is (= 10 (ut/distance-map {:x 2 :y 2} {:x 10 :y 8})))
   (is (= 0 (ut/distance-map {:x 2 :y 2} {:x 2 :y 2}))))

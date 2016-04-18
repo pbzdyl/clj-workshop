@@ -126,10 +126,14 @@
   Points are two element vectors with x and y
   coordinates."
   [p1 p2]
-  (unimplemented))
+  (let [[x1 y1] p1 [x2 y2] p2]
+     (int (Math/sqrt (+ (* (- x2 x1) (- x2 x1)) (* (- y2 y1) (- y2 y1)))))
+    ))
 
 (defn distance-map
   "Calculates a distance between two points.
   Points are maps with :x and :y keys."
   [p1 p2]
-  (unimplemented))
+  (let [{x1 :x y1 :y} p1 {x2 :x y2 :y} p2]
+     (int (Math/sqrt (+ (* (- x2 x1) (- x2 x1)) (* (- y2 y1) (- y2 y1)))))
+    ))
