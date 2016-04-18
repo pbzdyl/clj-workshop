@@ -4,45 +4,89 @@
 (defn count-chars
   "Returns count of the provided character `c` in string `s`"
   [s c]
-  (unimplemented))
+  (->> s
+       (filter #(= c %))
+       (count)
+      )
+  )
 
 (defn candidate-names
   [candidates]
-  (unimplemented))
+  (->> candidates
+       (map :name)
+    )
+)
 
 (defn candidates-with-minimum-rating
   [min-rating candidates]
-  (unimplemented))
+  (->> candidates
+       (filter #(> (% :rating) 8) )
+    )
+  )
 
 (defn palindrome?
   "Checks if the given sequence is a palindrome"
   [xs]
-  (unimplemented))
+    (= (concat "" xs) (reverse xs))
+  )
 
 (defn count-palindromes
   [start end]
-  (unimplemented))
+
+  (->>  (range start end)
+        (map str)
+        (filter palindrome?)
+        (count)
+    )
+  )
+
+
+(defn prime?
+  "Checks if number is prime"
+  [n]
+    (->> n
+           (range)
+           (drop 2)
+           (map #(mod n %))
+           (some zero?)
+           (not)
+           )
+  )
 
 (defn primes
   "Returns a lazy seq of prime numbers"
   []
-  (unimplemented))
+  (->> (range)
+       (drop 2)
+       (filter prime?)
+       )
+  )
+
 
 (defn flip-flop
   [nums]
-  (unimplemented))
+    (keep-indexed #(if (even? %1) (inc %2) %2) nums)
+  )
+
+
 
 (defn mungle-candidate-name
   "Returns uppercased and reversed name of the candidate"
   [candidate]
-  (unimplemented))
+
+  (->> :name candidate
+       (.toUpperCase)
+       (reverse)
+       (apply str)
+    )
+  )
 
 (defn select-values
   "Selects keys from the provided map
   and return their values. For example:
   (select-values {:a 1 :b 2 :c 3} [:a :c]) => (1 3)"
   [map keyseq]
-  (unimplemented))
+  )
 
 (defn rcomp
   "Composes provided functions so that
@@ -53,26 +97,43 @@
 (defn power
   "Returns n to the power of m"
   [n m]
-  (unimplemented))
+  (->> (repeat m n)
+       (reduce *)
+    )
+  )
 
 (defn range-sum
   "Calculates the sum of numbers [0..n)"
   [n]
-  (unimplemented))
+    (->> n
+         (range)
+         (reduce +)
+      )
+  )
 
-(defn ratings-avg
+(defn rating-avg
   [candidates]
-  (unimplemented))
+  (/ (->> candidates
+       (map :rating)
+       (reduce +)
+      )
+     (count candidates)
+  )
+)
 
 (defn distance-tuple
   "Calculates a distance between two points.
   Points are two element vectors with x and y
   coordinates."
   [p1 p2]
-  (unimplemented))
+  (let [[x1 y1] p1 [x2 y2] p2]
+     (int (Math/sqrt (+ (* (- x2 x1) (- x2 x1)) (* (- y2 y1) (- y2 y1)))))
+    ))
 
 (defn distance-map
   "Calculates a distance between two points.
   Points are maps with :x and :y keys."
   [p1 p2]
-  (unimplemented))
+  (let [{x1 :x y1 :y} p1 {x2 :x y2 :y} p2]
+     (int (Math/sqrt (+ (* (- x2 x1) (- x2 x1)) (* (- y2 y1) (- y2 y1)))))
+    ))
